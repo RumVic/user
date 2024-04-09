@@ -1,39 +1,49 @@
-//package com.user.security;
-//
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//
-//
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//
-//
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//
-//                .authorizeRequests((authorizeRequests) ->
-//                authorizeRequests
-//                        .requestMatchers("/**").hasRole("USER"))
-//                .antMatchers("/register", "/css/**", "/js/**")
-//                .permitAll() // Разрешить доступ к странице регистрации и статическим ресурсам
-//                .anyRequest().authenticated() // Требовать аутентификацию для всех остальных запросов
-//                .and()
-//                .formLogin()
-//                .loginPage("/login") // Указать кастомную страницу входа
-//                .permitAll() // Разрешить доступ к форме входа всем
-//                .and()
-//                .logout()
-//                .permitAll(); // Разрешить всем выходить из системы
-//    }
-//
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("{noop}password").roles("USER"); // Пример конфигурации in-memory аутентификации
-//    }
-//}
-//
-//}
+package com.user.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+
+    private CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/login/guestPage",
+                                "/login", "/register")
+                        .permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login/in")
+                        .loginProcessingUrl("/login")
+                        .failureForwardUrl("/login/guestPage")
+                        .defaultSuccessUrl("/homepage", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login/guestPage")
+                        .permitAll())
+                .userDetailsService(userDetailsService);
+
+        return http.build();
+    }
+
+}

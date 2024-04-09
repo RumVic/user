@@ -4,4 +4,6 @@ import com.user.dao.User;
 import com.user.dto.UserRegistrationDto;
 
 public interface UserService extends Service<User, UserRegistrationDto>{
+
+    User findByUsername(String username);
 }

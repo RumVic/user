@@ -7,7 +7,8 @@ public interface Service<ENTITY, IDTO>{
 
     ENTITY create (IDTO dto);
     List<ENTITY> read ();
-    ENTITY update(UUID id, IDTO dto);
+    ENTITY update(UUID id, IDTO idto);
+    ENTITY updateWithEntity(UUID id, ENTITY ENTITY);
     void delete(UUID uuid);
     ENTITY readById(UUID id);
 }

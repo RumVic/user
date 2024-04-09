@@ -11,11 +11,12 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "roles")
-public class Roles {
+@Table(name = "role")
+@Builder
+@AllArgsConstructor
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     private String role;
 }

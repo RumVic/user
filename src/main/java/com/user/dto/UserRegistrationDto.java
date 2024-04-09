@@ -16,6 +16,6 @@ public class UserRegistrationDto {
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
-    private String Email;
+    private String email;
     private String password;
 }
