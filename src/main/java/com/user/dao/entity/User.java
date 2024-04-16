@@ -1,4 +1,4 @@
-package com.user.dao;
+package com.user.dao.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.user.dto;
+package com.user.dto.input;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -10,14 +10,12 @@
 <div>Surname: <span th:text="${user.surname}"></span></div>
 <div>Date of Birth: <span th:text="${user.dateOfBirth}"></span></div>
 <div>Email: <span th:text="${user.email}"></span></div>
-<div>Password: <span th:text="${user.password}"></span></div>
-<div>Role: <span th:text="${user.role}"></span></div>
-<div>Id: <span th:text="${user.id}"></span></div>
+
 
 <a th:href="@{/editUser/{id}(id=${user.id})}">Edit Profile</a>
 
 <form th:action="@{/deleteUser}" method="post">
-    <input type="hidden" name="id" th:value="${user.id}" />
+    <input type="hidden" name="id" th:value="${user.id}"/>
     <button type="submit">Delete Profile</button>
 </form>
 

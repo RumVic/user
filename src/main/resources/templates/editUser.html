@@ -8,25 +8,27 @@
 <h1>Edit Profile</h1>
 <form th:action="@{/updateUser}" method="post">
 
-    <label for="id">Id:</label>
-    <input type="id" id="id" name="id" th:value="${user.id}" />
+    <input type="hidden" id="id" name="id" th:value="${user.id}"/>
 
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:value="${user.name}" />
+    <input type="text" id="name" name="name" th:value="${user.name}"/>
 
     <label for="surname">Surname:</label>
-    <input type="text" id="surname" name="surname" th:value="${user.surname}" />
+    <input type="text" id="surname" name="surname" th:value="${user.surname}"/>
 
     <label for="dateOfBirth">Date of Birth:</label>
-    <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${user.dateOfBirth}" />
+    <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${user.dateOfBirth}"/>
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" th:value="${user.email}" />
+    <input type="email" id="email" name="email" th:value="${user.email}"/>
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" th:value="${user.password}" />
+    <input type="password" id="password" name="password" th:value="${user.password}"/>
 
-    <div>Role: <span th:text="${user.role}"></span></div>
+
+    <div th:if="${false}" style="display:none;">
+        Role: <span th:text="${user.role}"></span>
+    </div>
 
     <button type="submit">Update</button>
 </form>

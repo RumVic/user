@@ -8,16 +8,16 @@
 <h1>Registration Form</h1>
 <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <label for="name">Name:</label>
-    <input type="text" id="name" th:field="*{name}" />
+    <input type="text" id="name" th:field="*{name}"/>
 
     <label for="surname">Surname:</label>
-    <input type="text" id="surname" th:field="*{surname}" />
+    <input type="text" id="surname" th:field="*{surname}"/>
 
     <label for="dateOfBirth">Date of Birth:</label>
-    <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" />
+    <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}"/>
 
     <label for="password">Password:</label>
-    <input type="password" id="password" th:field="*{password}" />
+    <input type="password" id="password" th:field="*{password}"/>
 
     <button type="submit">Register</button>
 </form>
